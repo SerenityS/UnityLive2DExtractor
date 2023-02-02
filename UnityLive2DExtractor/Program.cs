@@ -24,6 +24,7 @@ namespace UnityLive2DExtractor
                 return;
             var containers = new Dictionary<AssetStudio.Object, string>();
             var cubismMocs = new List<MonoBehaviour>();
+            var animationClips = new List<AnimationClip>();
             foreach (var assetsFile in assetsManager.assetsFileList)
             {
                 foreach (var asset in assetsFile.Objects)
@@ -64,6 +65,9 @@ namespace UnityLive2DExtractor
                                 }
                             }
                             break;
+                        case AnimationClip animationClip:
+                            animationClips.Add(animationClip);
+                            break;
                     }
                 }
             }
@@ -94,7 +98,6 @@ namespace UnityLive2DExtractor
                 var monoBehaviours = new List<MonoBehaviour>();
                 var texture2Ds = new List<Texture2D>();
                 var gameObjects = new List<GameObject>();
-                var animationClips = new List<AnimationClip>();
 
                 foreach (var asset in assets)
                 {
@@ -109,10 +112,6 @@ namespace UnityLive2DExtractor
                     else if (asset is GameObject m_GameObject)
                     {
                         gameObjects.Add(m_GameObject);
-                    }
-                    else if (asset is AnimationClip m_AnimationClip)
-                    {
-                        animationClips.Add(m_AnimationClip);
                     }
                 }
 
